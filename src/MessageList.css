@@ -1,0 +1,10 @@
+.author{
+    font-size: 32px;
+    color: blueviolet;
+    text-align: left;
+}
+.message{
+    text-align: left;
+    font-size: 20px;
+    color: cadetblue;
+}
