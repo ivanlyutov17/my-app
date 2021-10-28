@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+display: flex;
+
 }
 
 .App-logo {
@@ -37,3 +38,17 @@
   }
 }
 
+
+.chats{
+  width: 20%;
+  padding-left: 20px;
+}
+.buttons{
+width: 80%;
+margin-top: 1em;
+}
+.flexed{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
