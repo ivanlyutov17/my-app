@@ -1,0 +1,29 @@
+.author{
+    font-size: 15px;
+    color: black;
+    text-align: left;
+}
+.messageText{
+    text-align: left;
+    font-size: 20px;
+    color: cadetblue;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px;
+}
+.messagesArea{
+    width:80%;
+    height: 80vh;
+    border: 1px solid black;
+    margin-bottom: 15px;
+
+}
+.inputMessage{
+    width: 80%;
+}
+.message{
+
+    width:50% ;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
