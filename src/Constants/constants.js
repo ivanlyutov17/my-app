@@ -4,6 +4,7 @@ const ROUTES = {
     CHAT: '/chats/:chatId',
     PROFILE: '/profile',
     NOT_FOUND: '/not-found',
+    NO_CHAT: '/no-chat',
 };
 
 export { ROUTES };

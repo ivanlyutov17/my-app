@@ -1,14 +1,18 @@
 import './MessageList.css'
-function MessageList({ messageList }) {
-    // key = `${message.key}`
-    return (<div className="messagesArea">
-        {
-            messageList.map((message,) => (<div className="message" key={message.key} >
-                <p className='author'>{message.author}</p>
-                <p className='messageText'>{message.text}</p>
-            </div>))
-        }
-    </div >)
+function MessageList({ messages }) {
+    // key = { message.key }
+    return (
+        <div className="messagesArea">
+            {
+
+                messages.map((message) => (
+                    < div className="message" >
+                        <p className='author'>{message.author}</p>
+                        <p className='messageText'>{message.text}</p>
+                    </div>
+                ))
+            }
+        </div >)
 };
 
 export default MessageList;
