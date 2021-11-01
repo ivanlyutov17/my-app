@@ -1,12 +1,27 @@
 import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import getId from '../../ChatsArray';
-import Chatslist from "../../Chatslist";
+import getId from '../../Components/ChatsArray';
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import MessageList from '../../MessageList';
+import MessageList from '../../Components/MessageList';
+import { useParams } from 'react-router';
+import { Chatslist } from '../../Components/Chatslist'
 
+const initialChats = {
+    id1: {
+        name: "Chat1",
+        messages: [{ text: "FirstMessage", author: 'Me' }],
+    },
+    id2: {
+        name: "Chat2",
+        messages: [{ text: "FirstMessageHereToo!", author: "Bot" }],
+    },
+};
 export const Chats = () => {
+    const { chatId } = useParams();
+    const [chats, setChats] = useState(initialChats);
+    console.log(chats)
+    console.log(chatId)
     const author = 'Ваня'
     const [text, setText] = useState('');
     const [messageList, setMessageList] = useState([])
@@ -15,27 +30,25 @@ export const Chats = () => {
         setMessageList([...messageList, {
             author: author, text: text, key: getId(),
         }]);
-        console.log(messageList.key);
     }
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if ((messageList.length !== 0) && (messageList[messageList.length - 1].author !== 'Bot')) {
-                setMessageList([...messageList, { author: 'Bot', text: 'Бот ответил', key: getId(), }]);
-                console.log(messageList)
-            }
-        }, 1500);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         if ((messageList.length !== 0) && (messageList[messageList.length - 1].author !== 'Bot')) {
+    //             setMessageList([...messageList, { author: 'Bot', text: 'Бот ответил', key: getId(), }]);
+    //         }
+    //     }, 1500);
 
-        return () => clearTimeout(timer);
+    //     return () => clearTimeout(timer);
 
-    }, [messageList])
+    // }, [messageList])
 
     return (<div className="flexed">
-        <div className="chats">
-            <h3>Ваши чаты</h3>
-            <Chatslist />
-        </div>
+        <Chatslist
+            chats={chats}
+            chatId={chatId}
+        />
         <div className="buttons">
-            <MessageList messageList={messageList} />
+            <MessageList messageList={chats[chatId].messages} />
             <TextField className="inputMessage" autoFocus id="outlined-basic" label="Введите сообщение" variant="outlined" value={text} onChange={getText} />
             <Button className="sendButton" variant="outlined" onClick={btnClick}>Отправить</Button>
         </div>

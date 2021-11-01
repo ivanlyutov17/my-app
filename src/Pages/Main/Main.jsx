@@ -1,3 +1,3 @@
 export const Main = () => {
-    return <div>Профиль</div>
+    return <div>Главная</div>
 }
