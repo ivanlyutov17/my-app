@@ -1,34 +1,33 @@
 import { useEffect } from 'react';
 import { useState } from 'react/cjs/react.development';
-import getId from '../../Components/ChatsArray';
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import MessageList from '../../Components/MessageList';
-import { useParams } from 'react-router';
 import { Chatslist } from '../../Components/Chatslist'
+import { v4 as uuidv4 } from "uuid"
 
-const initialChats = {
-    id1: {
-        name: "Chat1",
-        messages: [{ text: "FirstMessage", author: 'Me' }],
-    },
-    id2: {
-        name: "Chat2",
-        messages: [{ text: "FirstMessageHereToo!", author: "Bot" }],
-    },
-};
 export const Chats = () => {
-    const { chatId } = useParams();
-    const [chats, setChats] = useState(initialChats);
-    console.log(chats)
-    console.log(chatId)
+
+    const chatsArray = [
+        {
+            id: 'odin',
+            author: 'Dima',
+            messages: ['asdada'],
+        },
+        {
+            id: 'dwa',
+            author: 'Lexa',
+            messages: ['221231414'],
+        },
+
+    ]
     const author = 'Ваня'
     const [text, setText] = useState('');
     const [messageList, setMessageList] = useState([])
     const getText = (e) => setText(e.target.value);
     const btnClick = () => {
         setMessageList([...messageList, {
-            author: author, text: text, key: getId(),
+            author: author, text: text, key: uuidv4(),
         }]);
     }
     // useEffect(() => {
@@ -43,14 +42,11 @@ export const Chats = () => {
     // }, [messageList])
 
     return (<div className="flexed">
-        <Chatslist
-            chats={chats}
-            chatId={chatId}
-        />
+        <Chatslist chatsArray={chatsArray} />
         <div className="buttons">
-            <MessageList messageList={chats[chatId].messages} />
+            <MessageList messageList={messageList} />
             <TextField className="inputMessage" autoFocus id="outlined-basic" label="Введите сообщение" variant="outlined" value={text} onChange={getText} />
-            <Button className="sendButton" variant="outlined" onClick={btnClick}>Отправить</Button>
+            {<Button className="sendButton" variant="outlined" onClick={btnClick}>Отправить</Button>}
         </div>
     </div>)
 };

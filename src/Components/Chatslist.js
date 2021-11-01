@@ -5,21 +5,23 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Link, Route } from 'react-router-dom';
 import { Chats } from '../Pages/Chats';
+import { v4 as uuidv4 } from 'uuid'
 
 
-export const Chatslist = (props) => {
+export const Chatslist = ({ chatsArray }) => {
+    console.log(chatsArray)
     return (
         <div>
             <List
                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                 aria-label="contacts">
                 {
-                    props.chats.map((chat) => (<div className="chat" key={chat.chatId} >
+                    chatsArray.map((chat) => (<div className="chat" key={uuidv4()} >
                         <ListItem disablePadding>
                             <ListItemButton>
-                                <Link to={`/chats/${chat.chatId}`}>{chat.name}</Link>
-                                <Route path={`/chats/${chat.chatId}`}><Chats /></Route>
-                                {/* <ListItemText primary={chat.name} /> */}
+                                <Link to={`/chats/${chat.id}`}></Link>
+                                <Route path={`/chats/${chat.id}`}></Route>
+                                <ListItemText primary={chat.author} />
                             </ListItemButton>
                         </ListItem>
                     </div>))
