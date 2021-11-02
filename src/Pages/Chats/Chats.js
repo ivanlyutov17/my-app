@@ -20,17 +20,17 @@ export default function Chats({ chats }) {
     }
 
 
-    // if (!chats[chatId]) {
-    //     return <Redirect to="/nochat" />;
-    // }
+    if (!chatId) {
+        return <Redirect to="/no-chat" />;
+    }
     return (
         <div className='flexed'>
-            <Chatslist
+            {chats && <Chatslist
                 chats={chats}
                 chatId={chatId}
-            />
+            />}
             <div className='buttons'>
-                {/* <MessageList messages={chats[chatId].messages} /> */}
+                {chats && chatId && (<MessageList messages={chats[chatId].messages} />)}
                 <TextField className="inputMessage" autoFocus id="outlined-basic" label="Введите сообщение" variant="outlined" value={text} onChange={getText} />
                 <Button className="sendButton" variant="outlined" onClick={handleSubmit}>Отправить</Button>
             </div>
