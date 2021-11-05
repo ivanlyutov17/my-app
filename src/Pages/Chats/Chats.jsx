@@ -11,7 +11,6 @@ import { Redirect } from 'react-router';
 
 export default function Chats({ chats }) {
     const { chatId } = useParams();
-    console.log(chats)
     const author = 'Ваня'
     const [text, setText] = useState('');
     const getText = (e) => setText(e.target.value);
@@ -20,7 +19,7 @@ export default function Chats({ chats }) {
     }
 
 
-    if (!chatId) {
+    if (!chats[chatId]) {
         return <Redirect to="/no-chat" />;
     }
     return (

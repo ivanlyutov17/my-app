@@ -7,4 +7,9 @@ const ROUTES = {
     NO_CHAT: '/no-chat',
 };
 
-export { ROUTES };
+const AUTHORS = {
+    ME: 'Ваня',
+    BOT: 'Bot',
+}
+
+export { ROUTES, AUTHORS };
