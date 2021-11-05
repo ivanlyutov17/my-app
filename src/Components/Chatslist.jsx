@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { Route, Link } from "react-router-dom";
-import Chats from '../Pages/Chats';
+import { Link } from "react-router-dom";
 
 
 export const Chatslist = ({ chats, chatId }) => {
-    console.log(chats)
     return (
         <div>
             {Object.keys(chats).map((id) => (
