@@ -1,12 +1,12 @@
 import './MessageList.css'
+
 function MessageList({ messages }) {
-    // key = { message.key }
     return (
         <div className="messagesArea">
             {
 
                 messages.map((message) => (
-                    < div className="message" >
+                    < div className="message" key={message.key}>
                         <p className='author'>{message.author}</p>
                         <p className='messageText'>{message.text}</p>
                     </div>

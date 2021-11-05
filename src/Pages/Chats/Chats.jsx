@@ -6,21 +6,25 @@ import { Chatslist } from '../../Components/Chatslist';
 import MessageList from '../../Components/MessageList'
 import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from 'react-router';
+import { useSelector } from 'react-redux';
 
 
 
-export default function Chats({ chats }) {
+export default function Chats() {
     const { chatId } = useParams();
-    console.log(chats)
+    const chats= useSelector((state) => state.chats.chatList);
+    const messages = useSelector(state => state.messages.messageList);
     const author = 'Ваня'
     const [text, setText] = useState('');
     const getText = (e) => setText(e.target.value);
     const handleSubmit = () => {
-        chats[chatId].messages.push({ text: text, author: author, key: uuidv4() });
+        messages[chatId].messages.push({ text: text, author: author, key: uuidv4() });
+                setText('');
+
     }
 
 
-    if (!chatId) {
+    if (!chats[chatId]) {
         return <Redirect to="/no-chat" />;
     }
     return (
@@ -30,7 +34,7 @@ export default function Chats({ chats }) {
                 chatId={chatId}
             />}
             <div className='buttons'>
-                {chats && chatId && (<MessageList messages={chats[chatId].messages} />)}
+                {chats && chatId && (<MessageList messages={messages[chatId].messages} />)}
                 <TextField className="inputMessage" autoFocus id="outlined-basic" label="Введите сообщение" variant="outlined" value={text} onChange={getText} />
                 <Button className="sendButton" variant="outlined" onClick={handleSubmit}>Отправить</Button>
             </div>
