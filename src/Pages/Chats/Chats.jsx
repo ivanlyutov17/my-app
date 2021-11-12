@@ -7,18 +7,22 @@ import MessageList from '../../Components/MessageList'
 import { v4 as uuidv4 } from 'uuid';
 import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
-
+import { addMessageWithThunk } from '../../Store/Message/actions';
+import { AUTHORS } from '../../Constants/constants';
+import { useDispatch } from 'react-redux';
+import { store } from '../../Store';
 
 
 export default function Chats() {
     const { chatId } = useParams();
     const chats= useSelector((state) => state.chats.chatList);
-    const messages = useSelector(state => state.messages.messageList);
+    const messages = useSelector((state) => state.messages.messageList);
     const author = 'Ваня'
     const [text, setText] = useState('');
     const getText = (e) => setText(e.target.value);
     const handleSubmit = () => {
-        messages[chatId].messages.push({ text: text, author: author, key: uuidv4() });
+        // messages[chatId].messages.push({ text: text, author: author, key: uuidv4() });
+        store.dispatch(addMessageWithThunk(chatId,{text:text,author:AUTHORS.ME,key:uuidv4()}))
                 setText('');
 
     }

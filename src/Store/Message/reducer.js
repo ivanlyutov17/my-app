@@ -8,7 +8,7 @@ const initialState = {
     },
     2: {
          messages: [
-            { text: "FirstMessageHereToo!", author: AUTHORS.BOT, key: uuidv4() },
+            { text: "FirstMessageHereToo!", author: AUTHORS.ME, key: uuidv4() },
         ],
      
     },
