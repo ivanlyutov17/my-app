@@ -16,26 +16,29 @@ const initialState = {
 };
 
 const messageListReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_MESSAGE: {
-      const currentList = state.messageList[action.chatId] || [];
-      return {
-        ...state,
-        messageList: {
-          ...state.messageList,
-          [action.chatId]: [
-            ...currentList,
-            {
-              ...action.message,
-              id: `${action.chatId}${currentList.length}`,
-            },
-          ],
-        },
-      };
+  console.log(action)
+    switch (action.type) {
+        case ADD_MESSAGE: {
+            const currentList = state.messageList[action.chatId].messages || []
+            return {
+                ...state,
+                messageList: {
+                    ...state.messageList,
+                    [action.chatId]: {
+                        messages: [
+                            ...currentList,
+                            {
+                                ...action.message,
+                                id:  `${action.chatId}${currentList.length}`,
+                            },
+                        ],
+                    },
+                },
+            }
+        }
+        default:
+            return state
     }
-    default:
-      return state;
-  }
-};
+}
 
-export default messageListReducer;
+export default messageListReducer
