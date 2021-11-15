@@ -13,9 +13,9 @@ import { useDispatch } from 'react-redux';
 
 
 export default function Chats() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { chatId } = useParams();
-    const chats= useSelector((state) => state.chats.chatList);
+    const chats = useSelector((state) => state.chats.chatList);
     const messages = useSelector((state) => state.messages.messageList);
     const author = 'Ваня'
     const [text, setText] = useState('');
@@ -26,7 +26,7 @@ export default function Chats() {
 
     }
 
-
+    console.log(chats)
     if (!chats[chatId]) {
         return <Redirect to="/no-chat" />;
     }

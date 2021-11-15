@@ -1,4 +1,5 @@
-import { ADD_CHAT } from "./constants";
+import { ADD_CHAT, DELETE_CHAT } from "./constants";
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   chatList: {
@@ -14,17 +15,29 @@ const initialState = {
 };
 
 const chatsReducer = (state = initialState, action) => {
+
+
+
   switch (action.type) {
+    case DELETE_CHAT:
+    //   // delete state.chatList.action.chatId[messages];
+      delete state.chatList[action.chatId];
+
+      return {
+        ...state
+      }
+
     case ADD_CHAT:
       return {
         ...state,
-        chatList: [
-          ...state.chatList,
-          {
-            id: `id${state.chatList.length}`,
-            name: action.name,
-          },
-        ],
+        chatList: {
+        ...state.chatList,
+          [action.id]: {
+          ...state.chatList[action.id],
+          id: action.id,
+          name:action.name
+          }
+        }
       };
     default:
       return state;

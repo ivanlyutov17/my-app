@@ -1,4 +1,4 @@
-import { ADD_MESSAGE } from "./constants";
+import { ADD_MESSAGE,DELETE_MESSAGES,INITAL_MESSAGE } from "./constants";
 import { v4 as uuidv4 } from "uuid"
 import { AUTHORS } from "../../Constants/constants";
 const initialState = {
@@ -18,6 +18,24 @@ const initialState = {
 const messageListReducer = (state = initialState, action) => {
   console.log(action)
     switch (action.type) {
+
+        case DELETE_MESSAGES: {
+            delete state.messageList[action.chatId];
+            return { ...state };
+        };
+        case INITAL_MESSAGE: {
+            return {
+                ...state,
+                messageList: {
+                    ...state.messageList,
+                    [action.chatId]: {
+                        messages: [
+                            {...action.message}
+                        ]
+                    }
+                }
+            }
+        }
         case ADD_MESSAGE: {
             const currentList = state.messageList[action.chatId].messages || []
             return {
@@ -36,6 +54,8 @@ const messageListReducer = (state = initialState, action) => {
                 },
             }
         }
+
+        
         default:
             return state
     }
