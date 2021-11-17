@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { applyMiddleware } from "redux";
 import storage from 'redux-persist/lib/storage';
 import { compose } from "redux";
+import gistsReducer from "./Gists/reducer";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistConfig = {
     key: 'root',
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     chats: chatsReducer,
     profile: profileReducer,
     messages: messageListReducer,
+    gists:gistsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

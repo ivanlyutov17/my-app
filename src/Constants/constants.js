@@ -5,7 +5,8 @@ const ROUTES = {
     PROFILE: '/profile',
     NOT_FOUND: '/not-found',
     NO_CHAT: '/no-chat',
-};
+    GISTS: '/gists',
+}
 
 const AUTHORS = {
     ME: 'Ваня',

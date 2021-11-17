@@ -9,6 +9,7 @@ import { NoChat } from "./NoChat"
 import { useState } from "react"
 import "./navigation.css"
 import { useSelector } from "react-redux"
+import Gistslist from "../Pages/Gists"
 
 // const initialChats = {
 //     1: {
@@ -51,6 +52,13 @@ export const Header = () => {
                     component={Link}
                     to={ROUTES.CHATS}
                 />
+                <Tab
+                    value={ROUTES.GISTS}
+                    label="Gists"
+                    component={Link}
+                    to={ROUTES.GISTS}
+                />
+
             </Tabs>
             <Switch>
                 <Route path={ROUTES.PROFILE}>
@@ -75,6 +83,10 @@ export const Header = () => {
 
                 <Route exact path={ROUTES.MAIN}>
                     <Main />
+                </Route>
+
+                <Route exact path={ROUTES.GISTS}>
+                    <Gistslist/>
                 </Route>
             </Switch>
         </div>
